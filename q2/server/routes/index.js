@@ -1,40 +1,29 @@
-var models = require('../db/models');
-var express = require('express');
-var router = express.Router();
-/*
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-});
-*/
+const express = require('express');
+const router = express.Router();
+//const LifePlannerService  = require('./services/LifePlannerService');
+const models = require('../db/models');
 
-router.get('/', function(req, res) {
-  models.User.findAll({
-    include: [ models.Task ]
-  }).then(function(users) {
-    res.render('index', {
-      title: 'Sequelize: Express Example',
-      users: users
-    });
-  });
-});
-router.post('/users', function(req, res) {
-    models.User.create({
-        name: req.body.name,
-        email: req.body.email
-    }).then(function(user) {
-        res.json(user);
-    });
-});
 
 // get all tasks
-router.get('/tasks', function(req, res) {
+router.get('/api/tasks', function(req, res) {
     models.Task.findAll({}).then(function(tasks) {
         res.json(tasks);
     });
 });
 
+// add new task
+router.post('/api/tasks', function(req, res) {
+    models.Task.create({
+        name: req.body.name,
+        complete: req.complete,
+        UserId: req.body.user_id
+    }).then(function(task) {
+        res.json(task);
+    });
+});
+
 // get single task
-router.get('/task/:id', function(req, res) {
+router.get('/api/task/:id', function(req, res) {
     models.Task.find({
         where: {
             id: req.params.id
@@ -44,18 +33,10 @@ router.get('/task/:id', function(req, res) {
     });
 });
 
-// add new task
-router.post('/tasks', function(req, res) {
-    models.Task.create({
-        name: req.body.name,
-        UserId: req.body.user_id
-    }).then(function(task) {
-        res.json(task);
-    });
-});
+
 
 // update single task
-router.put('/task/:id', function(req, res) {
+router.put('/api/task/:id', function(req, res) {
     models.Task.find({
         where: {
             id: req.params.id
@@ -73,7 +54,7 @@ router.put('/task/:id', function(req, res) {
 });
 
 // delete a single task
-router.delete('/task/:id', function(req, res) {
+router.delete('/api/task/:id', function(req, res) {
     models.Task.destroy({
         where: {
             id: req.params.id
@@ -82,5 +63,16 @@ router.delete('/task/:id', function(req, res) {
         res.json(task);
     });
 });
+
+
+router.post('/api/users', function(req, res) {
+    models.User.create({
+        name: req.body.name,
+        email: req.body.email
+    }).then(function(user) {
+        res.json(user);
+    });
+});
+
 
 module.exports = router;

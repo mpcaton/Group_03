@@ -1,0 +1,29 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "skidoomachz",
+    "host": "localhost",
+    "database": "postgres",
+    "schema": "public"
+  },
+
+  "test": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "skidoomachz",
+    "host": "localhost",
+    "database": "postgrestst",
+    "schema": "public"
+  },
+
+  "prod": {
+    "driver": "pg",
+    "user": "mxpqkpzsmfoujf",
+    "password": "c626a49842e54ad3031185f2cd2cc30dfdd72dab60b020d2763bce03c53ea29e",
+    "host": "postgres://mxpqkpzsmfoujf:c626a49842e54ad3031185f2cd2cc30dfdd72dab60b020d2763bce03c53ea29e@ec2-54-235-73-241.compute-1.amazonaws.com:5432/da869dviiisbgg",
+    "database": "postgresql-closed-82851",
+    "schema": "public"
+  }
+
+}
