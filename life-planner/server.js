@@ -1,16 +1,25 @@
 // server.js
 const express = require('express');
-const app = express();
-const path = require('path');
-// Run the app by serving the static files
-// in the dist directory
-app.use(express.static(__dirname + '/dist'));
-// Start the app by listening on the default
-// Heroku port
-app.listen(process.env.PORT || 8080);
+const routes = require('./routes');
+const bodyParser = require('body-parser');
+// *** express instance *** //
+var app = express();
 
-// For all GET requests, send back index.html
-// so that PathLocationStrategy can be used
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
+const PORT = process.env.PORT || 8080;
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+// REGISTER OUR ROUTES -------------------------------
+// all of our routes will be prefixed with /
+app.use('/', routes);
+
+// START THE SERVER
+// =============================================================================
+//app.listen(PORT);
+
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
 });
+
+module.exports = app;
