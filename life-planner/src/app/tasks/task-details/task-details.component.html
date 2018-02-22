@@ -1,0 +1,23 @@
+<div *ngIf="task" class="row">
+  <div class="col-md-12">
+    <h2 *ngIf="task._id">Task Details</h2>
+    <h2 *ngIf="!task._id">New Task</h2>
+  </div>
+</div>
+<div *ngIf="task" class="row">
+  <form class="col-md-12">
+    <div class="form-group">
+      <label for="task-name">Name</label>
+      <input class="form-control" name="task-name" [(ngModel)]="task.name" placeholder="Name"/>
+    </div>
+    <div class="form-group">
+      <label for="task-complete">Complete</label>
+      <input class="form-control" name="task-complete" [(ngModel)]="task.complete" placeholder=""/>
+    </div>
+    <div class="form-group">
+      <label for="task-userid">User ID</label>
+      <input class="form-control" name="task-userid" [(ngModel)]="task.userid" placeholder=""/>
+    </div>
+    <button class="btn btn-primary" *ngIf="!task.id" (click)="createTask(task)">Create</button>
+  </form>
+</div>

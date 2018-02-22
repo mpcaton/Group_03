@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Task = sequelize.define('Task', {
+  let Task = sequelize.define('Task', {
     name: DataTypes.STRING,
     complete: {
       type: DataTypes.BOOLEAN,
@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Task.associate = function(models) {
-    models.Task.belongsTo(models.User, {
+    Task.belongsTo(models.User, {
       onDelete: "CASCADE",
       foreignKey: {
         allowNull: false

@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 8080;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+let distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /
 app.use('/', routes);
