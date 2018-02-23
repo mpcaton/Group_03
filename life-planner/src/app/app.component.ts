@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+// import {TaskService} from './tasks/task.service';
+// import {Observable} from 'rxjs/Rx';
+
 import * as $ from 'jquery';
 
 @Component({

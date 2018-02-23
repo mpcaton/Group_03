@@ -1,28 +1,31 @@
 // server.js
 const express = require('express');
-const routes = require('./routes');
+const api = require('./routes');
 const bodyParser = require('body-parser');
+const http = require('http');
+const path = require('path');
 // *** express instance *** //
-var app = express();
+const app = express();
 
 const PORT = process.env.PORT || 8080;
-
+app.set('PORT',PORT);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-let distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
+app.use(express.static(path.join(__dirname, 'dist')));
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /
-app.use('/', routes);
+app.use('/api', api);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 // START THE SERVER
 // =============================================================================
 //app.listen(PORT);
-
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
-});
+const server = http.createServer(app);
+server.listen(PORT, () => console.log(`Running on localhost:${PORT}`));
 
 module.exports = app;

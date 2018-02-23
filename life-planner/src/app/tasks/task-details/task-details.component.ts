@@ -21,7 +21,7 @@ export class TaskDetailsComponent {
   constructor (private taskService: TaskService) {}
 
   createTask(task: Task) {
-    this.taskService.createTask(task).then((newTask: Task) => {
+    this.taskService.createTask(task).subscribe((newTask: Task) => {
       this.createHandler(newTask);
     });
   }

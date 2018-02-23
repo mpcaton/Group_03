@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Task } from './task';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class TaskService {
@@ -9,8 +13,9 @@ export class TaskService {
 
   constructor (protected httpClient: HttpClient) {}
   // get("/api/tasks")
-  getTasks(): Observable<void | Task[]> {
-    return this.httpClient.get<Task[]>(this.tasksUrl);
+  getTasks(): Observable<Task[]> {
+    // return this.httpClient.get<Array<Task>>(this.tasksUrl);
+    return this.httpClient.get<Array<Task>>('api/tasks');
   }
 
   // post("/api/tasks")

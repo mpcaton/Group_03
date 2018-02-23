@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../task';
 import { TaskService } from '../task.service';
-import { TaskDetailsComponent } from '../task-details/task-details.component';
+// import { TaskDetailsComponent } from '../task-details/task-details.component';
 
 @Component({
   selector: 'app-task-list',
@@ -16,9 +16,14 @@ export class TaskListComponent implements OnInit {
   constructor(private taskService: TaskService) { }
 
   ngOnInit() {
+    this.getTasks();
+  }
+
+
+  getTasks() {
     this.taskService
       .getTasks()
-      .then((tasks: Task[]) => {
+      .subscribe((tasks: Task[]) => {
         this.tasks = tasks.map((task) => {
           if (!task.userid) {
             task.userid = 5;
@@ -27,6 +32,7 @@ export class TaskListComponent implements OnInit {
         });
       });
   }
+
 
   private getIndexOfTask = (taskId: Number) => {
     return this.tasks.findIndex((task) => {

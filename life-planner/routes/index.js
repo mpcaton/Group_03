@@ -1,9 +1,9 @@
 const routes = require('express').Router();
 const tasks = require('./tasks');
 
-routes.use('/api/tasks', tasks);
+routes.use('/tasks', tasks);
 
-routes.get('/api', (req, res) => {
+routes.get('/', (req, res) => {
   res.status(200).json({ message: 'Connected to the API!' });
 });
 
