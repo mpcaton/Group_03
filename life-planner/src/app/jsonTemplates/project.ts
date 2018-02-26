@@ -12,9 +12,9 @@ export class Project {
 
   /*
   Example of how later on we can nest other json object interfaces into eachother.
-  Must put 'import { Task } from "./task"' however up top.
-  @JsonProperty("tasks", [Task], false)
-  tasks: Task[] = undefined;
+  Must put 'import { TaskModel } from "./task"' however up top.
+  @JsonProperty("tasks", [TaskModel], false)
+  tasks: TaskModel[] = undefined;
    */
 
 }

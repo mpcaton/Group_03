@@ -6,6 +6,7 @@ const models = require('../../db/models/index');
 
 // get all tasks
 router.get('/api/tasks', function(req, res) {
+    console.log('Getting tasks...');
     models.Task.findAll({}).then(function(tasks) {
         res.json(tasks);
     });

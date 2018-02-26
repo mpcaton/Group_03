@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Task.associate = function(models) {
-    Task.belongsTo(models.User, {
+    models.Task.belongsTo(models.User, {
       onDelete: "CASCADE",
       foreignKey: {
         allowNull: false

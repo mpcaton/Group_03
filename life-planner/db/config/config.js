@@ -1,4 +1,4 @@
-{
+module.exports = {
   "development": {
     "username": "q2db",
     "password": "q2db",

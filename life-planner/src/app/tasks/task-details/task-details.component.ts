@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Task } from '../task';
+import { TaskModel } from '../task.model';
 import { TaskService } from '../task.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { TaskService } from '../task.service';
 })
 export class TaskDetailsComponent {
   @Input()
-  task: Task;
+  task: TaskModel;
 
   @Input()
   createHandler: Function;
@@ -20,14 +20,14 @@ export class TaskDetailsComponent {
 */
   constructor (private taskService: TaskService) {}
 
-  createTask(task: Task) {
-    this.taskService.createTask(task).subscribe((newTask: Task) => {
+  createTask(task: TaskModel) {
+    this.taskService.createTask(task).subscribe((newTask: TaskModel) => {
       this.createHandler(newTask);
     });
   }
 /*
-  updateTask(task: Task): void {
-    this.taskService.updateTask(task).then((updatedTask: Task) => {
+  updateTask(task: TaskModel): void {
+    this.taskService.updateTask(task).then((updatedTask: TaskModel) => {
       this.updateHandler(updatedTask);
     });
   }

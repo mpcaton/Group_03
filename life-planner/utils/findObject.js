@@ -1,7 +1,7 @@
 /* eslint no-param-reassign: 0 */
 const dbModels = require('../db/models');
 /*
-dbModels.Task.find({
+dbModels.TaskModel.find({
   where: {
     id: req.params.taskId * 1
   }

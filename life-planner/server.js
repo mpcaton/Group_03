@@ -19,6 +19,10 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/api', api);
 
 app.get('*', (req, res) => {
+  Object.keys(req.body).forEach(function(key) {
+    console.log('message: ' + key);
+  });
+
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 

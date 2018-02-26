@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../task';
+import { TaskModel } from '../task.model';
 import { TaskService } from '../task.service';
 // import { TaskDetailsComponent } from '../task-details/task-details.component';
 
@@ -9,43 +9,43 @@ import { TaskService } from '../task.service';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  title = 'Task List';
+  tasks: TaskModel[];
+  errorMsg: string;
+  errorFlag = false;
+  selectedTask: TaskModel;
 
-  tasks: Task[];
-  selectedTask: Task;
-
-  constructor(private taskService: TaskService) { }
-
-  ngOnInit() {
-    this.getTasks();
+  constructor(private taskService: TaskService) {
+    console.log('inside app-task-list...');
   }
+
+
 
 
   getTasks() {
     this.taskService
       .getTasks()
-      .subscribe((tasks: Task[]) => {
-        this.tasks = tasks.map((task) => {
-          if (!task.userid) {
-            task.userid = 5;
-          }
-          return task;
-        });
-      });
+      .subscribe(
+        (data: TaskModel[]) => { this.tasks = data; },
+        (error) => {
+          this.errorMsg = error;
+          this.errorFlag = true;
+        }
+        );
   }
-
-
+/*
   private getIndexOfTask = (taskId: Number) => {
     return this.tasks.findIndex((task) => {
       return task.id === taskId;
     });
   }
 
-  selectTask(task: Task) {
+  selectTask(task: TaskModel) {
     this.selectedTask = task;
   }
 
   createNewTask() {
-    const task: Task = {
+    const task: TaskModel = {
       name: '',
       complete: false,
       userid: 5
@@ -53,7 +53,7 @@ export class TaskListComponent implements OnInit {
 
     // By default, a newly-created task will have the selected state.
     this.selectTask(task);
-  }
+  } */
 /*
   deleteTask = (taskId: String) => {
     var idx = this.getIndexOfTask(taskId);
@@ -64,13 +64,15 @@ export class TaskListComponent implements OnInit {
     return this.tasks;
   }
 */
-  addTask = (task: Task) => {
+/*
+  addTask = (task: TaskModel) => {
     this.tasks.push(task);
     this.selectTask(task);
     return this.tasks;
   }
+  */
 /*
-  updateTask = (task: Task) => {
+  updateTask = (task: TaskModel) => {
     var idx = this.getIndexOfTask(task._id);
     if (idx !== -1) {
       this.tasks[idx] = task;
@@ -79,4 +81,8 @@ export class TaskListComponent implements OnInit {
     return this.tasks;
   }
   */
+
+  ngOnInit() {
+    this.getTasks();
+  }
 }
