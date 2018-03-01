@@ -1,0 +1,48 @@
+<p>
+  projects works!
+</p>
+
+
+<div class="fixed-action-btn modal-trigger" data-target="project_create_modal">
+  <a class="btn-floating btn-large red waves-effect">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
+
+<!-- Modal Structure -->
+<div id="project_create_modal" class="modal">
+  <div class="modal-content">
+    <h4>Create new project</h4>
+    <form id="project_create_form" class="grey lighten-4" onsubmit="createProject(projName,projDescription);return false">
+      <div class="row"></div>
+      <div class="input-field ">
+        <input type="text" id="project_new_name" name="project_new_name" [(ngModel)]="projName">
+        <label for="project_new_name">Project Name</label>
+      </div>
+      <div class="input-field ">
+        <input type="text" id="project_new_role" name="project_new_role" [(ngModel)]="projDescription">
+        <label for="project_new_role">Project Description</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-action modal-close waves-effect btn-flat">Cancel</button>
+    <button (click)="createProjectDocument(projName,projDescription)" class="modal-action modal-close waves-effect btn orange darken-2" >Submit</button>
+  </div>
+</div>
+
+<!-- Project List -->
+<div class="container row">
+  <h4>Projects</h4>
+  <hr>
+  <br>
+
+  <ul id="project_list"  class="collapsible" data-collapsible="expandable">
+    <li *ngFor="let proj of ( projects | async )" class="blue">
+      {{ proj.name }}, {{ proj.description }}
+      <button (click)="deleteProjectDocument(proj.pid)">Delete me</button>
+      <button (click)="updateProject(proj.pid,'new name','new description')">Update me</button>
+    </li>
+  </ul>
+
+</div>

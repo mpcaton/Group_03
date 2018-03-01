@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyDGTc0KQAwXCA0dvdSBuuhryKnvWwH2e9g',
+    authDomain: 'q2-life-planner.firebaseapp.com',
+    databaseURL: 'https://q2-life-planner.firebaseio.com',
+    projectId: 'q2-life-planner',
+    storageBucket: 'q2-life-planner.appspot.com',
+    messagingSenderId: '633852515545'
+  }
 };

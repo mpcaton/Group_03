@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import * as $ from 'jquery';
+import {AngularFirestore} from 'angularfire2/firestore';
+import {AuthService} from './core/auth.service';
+
+// import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +12,7 @@ import * as $ from 'jquery';
 export class AppComponent implements OnInit {
 
   title = 'Q2';
-  constructor() {
+  constructor(db: AngularFirestore, public auth: AuthService) {
   }
 
   ngOnInit() {

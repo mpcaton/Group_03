@@ -4,15 +4,21 @@
     <a id="logo-container" href="#" class="center brand-logo"><i class="material-icons">widgets</i>Q2</a>
 
     <ul id="slide-out" class="side-nav orange lighten-5">
-      <li><div class="user-view deep-orange lighten-1">
-        <a href="#"><img class="circle white-text" src="images/user.jpg"></a>
-        <a href="#"><span class="name white-text">Rare Pepe</span></a>
-        <a href="#"><span class="email white-text">Pepe@gmail.com</span></a>
-      </div></li>
+      <li>
+        <div class="user-view deep-orange lighten-1" *ngIf="auth.user | async">
+          <div *ngIf="auth.user | async as user">
+            <a href="#"><img class="circle white-text" [src]="user.photoURL"></a>
+            <a href="#"><span class="name white-text">{{user.displayName}}</span></a>
+            <a href="#"><span class="email white-text">{{user.email}}</span></a>
+          </div>
+        </div>
+      </li>
       <li><a class="waves-effect" routerLink="home"><i class="material-icons">home</i>Home</a></li>
+      <li><a class="waves-effect" routerLink=user-profile><i class="material-icons">web_asset</i>Profile</a></li>
       <li><a class="waves-effect" href="#"><i class="material-icons">web_asset</i>Calendar</a></li>
       <li><a class="waves-effect" href="#"><i class="material-icons">wc</i>Roles</a></li>
       <li><a class="waves-effect" href="#"><i class="material-icons">assignment</i>Tasks</a></li>
+      <li><a class="waves-effect" routerLink=projects><i class="material-icons">assignment</i>Projects</a></li>
     </ul>
 
   </div>
