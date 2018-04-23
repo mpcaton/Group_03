@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
-import { APP_BASE_HREF } from '@angular/common';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {DebugElement} from '@angular/core';
+import {APP_BASE_HREF} from '@angular/common';
 import {Observable} from 'rxjs/Observable';
 
 import {AngularFireModule} from 'angularfire2';
@@ -10,32 +10,29 @@ import {AngularFireStorageModule} from 'angularfire2/storage';
 
 
 // Modules
-import { AppRoutingModule } from '../../app-routing.module';
-import { CoreModule } from '../../core/core.module';
-import { SharedModule } from '../../shared/shared.module';
+import {AppRoutingModule} from '../../app-routing.module';
+import {CoreModule} from '../../core/core.module';
+import {SharedModule} from '../../shared/shared.module';
 import {GoalsModule} from '../goals.module';
 import {FormsModule} from '@angular/forms';
-import { FlashMessagesModule } from 'angular2-flash-messages';
-import { FlashMessagesService } from 'angular2-flash-messages';
+import {FlashMessagesModule} from 'angular2-flash-messages';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 import {GoalService} from '../goal.service';
 import {GoalModel} from '../goal.model';
 
 // Components
 import {AppComponent} from '../../app.component';
-import { LoginComponent } from '../../login/login.component';
-import { HomeComponent } from '../../home/home.component';
+import {LoginComponent} from '../../login/login.component';
+import {HomeComponent} from '../../home/home.component';
 import {AddGoalComponent} from './add-goal.component';
-import { WelcomeComponent } from '../../welcome/welcome.component';
-import { AuthService } from '../../core/auth.service';
-import { NotFoundComponent } from '../../not-found/not-found.component';
-import { NavbarComponent } from '../../navbar/navbar.component';
+import {WelcomeComponent} from '../../welcome/welcome.component';
+import {AuthService} from '../../core/auth.service';
+import {NotFoundComponent} from '../../not-found/not-found.component';
+import {NavbarComponent} from '../../navbar/navbar.component';
 
-
-import { By } from '@angular/platform-browser';
+import {By} from '@angular/platform-browser';
 import {ProjectService} from '../../projects/project.service';
-import {GoalService} from '../goal.service';
-
 
 describe('AddGoalComponent', () => {
   let component: AddGoalComponent;
@@ -67,7 +64,7 @@ describe('AddGoalComponent', () => {
         NavbarComponent
       ],
       providers: [
-        { provide: APP_BASE_HREF, useValue: '/goals'},
+        {provide: APP_BASE_HREF, useValue: '/goals'},
         GoalService,
         ProjectService,
         FlashMessagesService
@@ -107,7 +104,6 @@ describe('AddGoalComponent', () => {
     expect(spyService).toHaveBeenCalled();
 
   });
-
 
 
 });
