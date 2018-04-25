@@ -17,13 +17,36 @@ import {LoginComponent} from '../login/login.component';
 import {AppComponent} from '../app.component';
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {WelcomeComponent} from '../welcome/welcome.component';
-import {APP_BASE_HREF, Location} from '@angular/common';
+import {APP_BASE_HREF} from '@angular/common';
 import {ProjectService} from '../projects/project.service';
 import {TaskModel, TaskWeight} from './task.model';
 
-describe('TaskService', () => {
+describe('Service: TaskService', () => {
 
   let spyService: jasmine.Spy;
+
+  const testTasks: Array<TaskModel> = [
+    {
+      tid: '12345',
+      name: 'Task 1',
+      hours: 0,
+      urgent: false,
+      important: false,
+      dueDateTime: null,
+      isComplete: false,
+      weight: TaskWeight.NONE
+    },
+    {
+      tid: '98765',
+      name: 'Task 2',
+      hours: 0,
+      urgent: false,
+      important: false,
+      dueDateTime: null,
+      isComplete: false,
+      weight: TaskWeight.NONE
+    }
+  ];
 
 
   beforeEach(() => {
@@ -73,12 +96,41 @@ describe('TaskService', () => {
     };
 
     spyService = spyOn(service, 'addTask').and.returnValue('TestAccount');
-
     service.addTask(task);
     // Check internal function
     expect(spyService).toHaveBeenCalled();
+  }));
 
+  it('should edit a task', inject([TaskService], (service: TaskService) => {
+    let task: TaskModel = {
+      tid: '',
+      name: 'EditTest',
+      hours: 10,
+      urgent: false,
+      important: false,
+      dueDateTime: null,
+      isComplete: false,
+      weight: TaskWeight.NONE
+    };
 
+    spyService = spyOn(service, 'addTask').and.returnValue('TestAccount');
+    service.addTask(task);
+
+    task = {
+      tid: '',
+      name: 'EditTest 2',
+      hours: 100,
+      urgent: false,
+      important: false,
+      dueDateTime: null,
+      isComplete: false,
+      weight: TaskWeight.NONE
+    };
+
+    spyService = spyOn(service, 'updateTask').and.returnValue('TestAccount');
+    service.updateTask(task);
+    // Check internal function
+    expect(spyService).toHaveBeenCalled();
   }));
 
   it('should return all tasks', inject([TaskService], (service: TaskService) => {

@@ -66,9 +66,14 @@ export class TaskService {
   getTasks(): Observable<TaskModel[]> {
     this.tasks = this.tasksRef.snapshotChanges().map(changes => {
       return changes.map(action => {
-        const data = action.payload.doc.data() as TaskModel;
-        data.tid = action.payload.doc.id;
-        return data;
+        if (action.payload.exists === false) {
+          console.log('TS: no tasks found ');
+          return null;
+        } else {
+          const data = action.payload.doc.data() as TaskModel;
+          data.tid = action.payload.doc.id;
+          return data;
+        }
       });
     });
 

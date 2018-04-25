@@ -1,8 +1,7 @@
 import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {DebugElement} from '@angular/core';
 import {APP_BASE_HREF} from '@angular/common';
-import {Observable} from 'rxjs/Observable';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 
 import {AngularFireModule} from 'angularfire2';
@@ -20,7 +19,6 @@ import {FormsModule} from '@angular/forms';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 
 import {TaskService} from './task.service';
-import {TaskModel, TaskWeight} from './task.model';
 
 // Components
 import {AppComponent} from '../app.component';
@@ -32,8 +30,6 @@ import {AuthService} from '../core/auth.service';
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {NavbarComponent} from '../navbar/navbar.component';
 
-
-import {By} from '@angular/platform-browser';
 import {ProjectService} from '../projects/project.service';
 import {SpyLocation} from '@angular/common/testing';
 
