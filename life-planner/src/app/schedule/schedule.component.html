@@ -1,0 +1,65 @@
+<!-- Scheduled Task List -->
+<div class="row">
+  <div class="col s12">
+    <h4 class="col s12 center-align">Scheduled Tasks</h4>
+    <hr>
+    <a class="waves-effect waves-light btn" (click)='getSchedule()'>Refresh Schedule</a>
+    <br>
+    <table *ngIf="schedule?.length > 0;else noTasks" class="bordered striped">
+      <thead class="thead-inverse">
+      <tr>
+        <!--  <th>ID</th> -->
+        <th>Name</th>
+        <th>Urgent?</th>
+        <th>Important?</th>
+        <th>Complexity</th>
+        <th>Hours</th>
+        <th>Date Due</th>
+        <th>Is Complete?</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td colspan="8"></td>
+      </tr>
+      <tr *ngFor="let task of schedule">
+        <!--   <td>{{ task.tid }}</td> -->
+        <td>{{ task.name }}</td>
+        <td>{{ task.urgent | yesNoPipe }}</td>
+        <td>{{ task.important | yesNoPipe }}</td>
+        <td>{{ task.weight }}</td>
+        <td>{{ task.hours }}</td>
+        <td>{{ task.dueDateTime }}</td>
+        <td>{{ task.isComplete | yesNoPipe }}</td>
+        <td></td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noTasks>
+    <table class="bordered striped">
+      <thead class="thead-inverse">
+      <tr>
+        <!-- <th>ID</th> -->
+        <th>Name</th>
+        <th>Urgent?</th>
+        <th>Important?</th>
+        <th>Weight</th>
+        <th>Date Due</th>
+        <th>Is Complete?</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td colspan="8">There are no tasks in the system for this user.</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </ng-template>
+</div>
+
